@@ -22,31 +22,39 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="Nothing is true , everyting is permitted">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Collide">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="根据查询条件显示的货物审批列表，在显示的货物列表左侧加一个单选框，可根据勾选项批量通过审批。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="货物批量审批">
+<meta property="og:url" content="http://example.com/2020/09/15/%E8%B4%A7%E7%89%A9%E6%89%B9%E9%87%8F%E5%AE%A1%E6%89%B9/index.html">
 <meta property="og:site_name" content="Collide">
-<meta property="og:description" content="Nothing is true , everyting is permitted">
+<meta property="og:description" content="根据查询条件显示的货物审批列表，在显示的货物列表左侧加一个单选框，可根据勾选项批量通过审批。">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/日志/货物批量审批.png">
+<meta property="og:image" content="http://example.com/images/日志/货物批量审批后端方法入口.png">
+<meta property="og:image" content="http://example.com/images/日志/货物批量审批成图.png">
+<meta property="article:published_time" content="2020-09-15T10:51:14.000Z">
+<meta property="article:modified_time" content="2020-09-15T11:58:10.013Z">
 <meta property="article:author" content="Nkblouser">
+<meta property="article:tag" content="c#">
+<meta property="article:tag" content="webApi">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/日志/货物批量审批.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2020/09/15/%E8%B4%A7%E7%89%A9%E6%89%B9%E9%87%8F%E5%AE%A1%E6%89%B9/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>Collide</title>
+  <title>货物批量审批 | Collide</title>
   
 
 
@@ -238,11 +246,12 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
       
 
       
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
@@ -261,10 +270,9 @@
     
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/15/%E8%B4%A7%E7%89%A9%E6%89%B9%E9%87%8F%E5%AE%A1%E6%89%B9/" class="post-title-link" itemprop="url">货物批量审批</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          货物批量审批
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -297,17 +305,47 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>根据查询条件显示的货物审批列表，在显示的货物列表左侧加一个单选框，可根据勾选项批量通过审批。</p>
+        <p>根据查询条件显示的货物审批列表，在显示的货物列表左侧加一个单选框，可根据勾选项批量通过审批。</p>
 <img src="\images\日志\货物批量审批.png"  />
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/15/%E8%B4%A7%E7%89%A9%E6%89%B9%E9%87%8F%E5%AE%A1%E6%89%B9/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+
+
+
+<a id="more"></a>
+
+<ul>
+<li>基础</li>
+</ul>
+<p>先在页面添加个button、然后在js初始化申请列表时增添了name一致的勾选框，值为当前选中项的index，第一项index为0。</p>
+<p>设置当点击查询按钮时将查询表中的值存到 hideen input中 <code>&lt;input type=&quot;hidden&quot; name=&quot;temp_starttime&quot;&gt;</code>  不作直接读取查询表内容，避免勾选后更改查询值而未点击查询按钮时与显示列表信息的不一致性。</p>
+<ul>
+<li>前端读取查询值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> targetDom = $(<span class="string">&quot;#query-form&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> createJsonData = Utils.formToJsonArray(targetDom.serializeArray());	<span class="comment">// 此处为utils.js中自定义的数据格式转换方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> queryStart = targetDom.find(<span class="string">&quot;input[name=&#x27;temp_starttime&#x27;]&quot;</span>).val();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>前端获取勾选值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targetDom=$(<span class="string">&quot;#cargo-approve-list&quot;</span>);</span><br><span class="line">		<span class="keyword">var</span> shenpiArray = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">		targetDom.find(<span class="string">&quot;input:checkbox[name=&#x27;ShenpiCheck&#x27;]:checked&quot;</span>).each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		        shenpiArray.push($(<span class="built_in">this</span>).val());<span class="comment">//向数组中添加元素</span></span><br><span class="line">		&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>传值到后端</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Utils.putJSON(<span class="string">&#x27;api/CargoApprove/GetCargoRequestsByConditionsShenpiGroup&#x27;</span>, &#123;</span><br><span class="line">				PageIndex: PAGE_PARAMS.pagenum,   <span class="comment">//此处有页面设置，这是另一回事了，后端查询时可根据页面挑选，不影响</span></span><br><span class="line">				PageSize: PAGE_PARAMS.pagesize,</span><br><span class="line">				Start: queryStart,</span><br><span class="line">				ShenpiArray:shenpiArray&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>后端方法</p>
+<img src="\images\日志\货物批量审批后端方法入口.png"  />
+
+</li>
+</ul>
+<p><code>PaegerCargoQueryDto</code>为自定义的medel 用于接收参数</p>
+<p>一通查询后获取满足查询条件的申请列表(正如界面所显示的那样) 将满足 <code>pagerQuery.ShenpiArray.Contains(index)</code> 条件的项审批状态改为通过</p>
+<p>大功告成。</p>
+<img src="\images\日志\货物批量审批成图.png"  />
     </div>
 
     
@@ -315,116 +353,26 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/c/" rel="tag"># c#</a>
+              <a href="/tags/webApi/" rel="tag"># webApi</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/14/%E4%B8%80%E5%A4%A9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/%E9%A3%9E%E6%AE%B5.jpg">
-      <meta itemprop="name" content="Nkblouser">
-      <meta itemprop="description" content="Nothing is true , everyting is permitted">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Collide">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/14/%E4%B8%80%E5%A4%A9/" class="post-title-link" itemprop="url">一天</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-14 16:02:33" itemprop="dateCreated datePublished" datetime="2020-09-14T16:02:33+08:00">2020-09-14</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-15 19:51:26" itemprop="dateModified" datetime="2020-09-15T19:51:26+08:00">2020-09-15</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <center> 六点十分起床</center>
- <center>搭公交</center>
-
-  <center>吃粉汤</center>
-
-<center>敲代码</center>
-
-<center>吃水果</center>
-
-<center>睡午觉</center>
-
-<center>敲代码</center>
-
-<center>八点下班</center>
-
-<center>吃肯德基</center>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/14/%E4%B8%80%E5%A4%A9/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/14/%E4%B8%80%E5%A4%A9/" rel="prev" title="一天">
+                  <i class="fa fa-chevron-left"></i> 一天
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
   
   
-  
-
-
   
 
 

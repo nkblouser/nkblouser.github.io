@@ -22,20 +22,27 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="Nothing is true , everything is permitted">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://example.com/categories/index.html">
+  <meta name="description" content="北斗的安装人员已安装好设备并做了一个初步的配置。 我则需去取北斗数据。 此篇文章是我这几日技术总结及感想。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="北斗设备数据对接">
+<meta property="og:url" content="http://example.com/2020/10/14/%E5%8C%97%E6%96%97%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%8E%A5/index.html">
 <meta property="og:site_name" content="Collide">
-<meta property="og:description" content="Nothing is true , everything is permitted">
+<meta property="og:description" content="北斗的安装人员已安装好设备并做了一个初步的配置。 我则需去取北斗数据。 此篇文章是我这几日技术总结及感想。">
 <meta property="og:locale">
-<meta property="article:published_time" content="2020-09-15T03:35:07.000Z">
-<meta property="article:modified_time" content="2020-09-15T03:36:43.812Z">
+<meta property="og:image" content="http://example.com/images/日志/北斗设备图.png">
+<meta property="og:image" content="http://example.com/images/日志/指挥机配置.jpg">
+<meta property="og:image" content="http://example.com/images/日志/北斗tcp服务器.jpg">
+<meta property="og:image" content="http://example.com/images/日志/北斗设备连接过程.png">
+<meta property="article:published_time" content="2020-10-14T05:43:57.000Z">
+<meta property="article:modified_time" content="2020-10-14T08:05:15.690Z">
 <meta property="article:author" content="Nkblouser">
+<meta property="article:tag" content="串口通信">
+<meta property="article:tag" content="tcp">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/日志/北斗设备图.png">
 
 
-<link rel="canonical" href="http://example.com/categories/">
+<link rel="canonical" href="http://example.com/2020/10/14/%E5%8C%97%E6%96%97%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%8E%A5/">
 
 
 <script class="page-configurations">
@@ -43,13 +50,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>categories | Collide
-</title>
+  <title>北斗设备数据对接 | Collide</title>
   
 
 
@@ -250,53 +256,138 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
       
-  
-  
 
       
 
     
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/14/%E5%8C%97%E6%96%97%E8%AE%BE%E5%A4%87%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%8E%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E9%A3%9E%E6%AE%B5.jpg">
+      <meta itemprop="name" content="Nkblouser">
+      <meta itemprop="description" content="Nothing is true , everything is permitted">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Collide">
+    </span>
+
     
     
-    <div class="post-block" lang="zh-Hans">
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          北斗设备数据对接
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">categories
-</h1>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-<div class="post-meta-container">
+      <time title="创建时间：2020-10-14 13:43:57 / 修改时间：16:05:15" itemprop="dateCreated datePublished" datetime="2020-10-14T13:43:57+08:00">2020-10-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">问题总结</span></a>
+        </span>
+    </span>
+
   
-
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-  <div class="category-all-title">
-    目前共计 3 个分类
-  </div>
-  <div class="category-all">
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/">技术总结</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%BF%97/">日志</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">问题总结</a><span class="category-list-count">1</span></li></ul>
-  </div>
-</div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>北斗的安装人员已安装好设备并做了一个初步的配置。</p>
+<p>我则需去取北斗数据。</p>
+<p>此篇文章是我这几日技术总结及感想。</p>
+<img src="\images\日志\北斗设备图.png" style="vertical-align:middle;width:30%">
+
+<a id="more"></a>
+
+<p><strong>正常流程</strong></p>
+<p>串口转网口线接到我的笔记本上，在我的笔记本上下载一个名为 <strong>ZLVirCom</strong> 的软件去配置指挥机。</p>
+<img src="\images\日志\指挥机配置.jpg" style="vertical-align:middle;width:40%">
+
+<p>上边红框为指挥机的ip地址和端口，工作模式为tcp客户端，往服务端发送接收到的数据。</p>
+<p>下边红框为我笔记本ip及接收端口。</p>
+<p>当ip模式为静态时，目的ip要跟指挥机在同一个局域网内，能互相ping通。</p>
+<p>其他参数保持默认的即可。</p>
+<img src="\images\日志\北斗tcp服务器.jpg" style="vertical-align:middle;width:40%">
+
+<p>然后开一个tcp服务器测试，显示连接成功。</p>
+<p>目前为止即可在指挥机与服务器之间互发消息了。</p>
+<p><strong>出现的问题</strong></p>
+<p>做到这里之后我发现开的服务器并没有接收到数据，后来问一下北斗的工作人员，原因是指挥机不会自动发数据…</p>
+<p>要往北斗指挥机发一个读卡指令，指挥机才会发送数据</p>
+<p>我们的服务器跟指挥机不在一个地方，服务器有固定ip，本意是指挥机作为tcp客户端，接入网络之后，ip模式改为动态，自动往我们的服务器端口上发数据，我们在从端口读数据处理就可以了。</p>
+<p>但是他需要发一条读卡指令才可以发送数据，我们服务器没办法发，因为指挥机那没有固定的ip地址。（十分头疼）</p>
+<p>解决方法是在那里放一台主机，写个程序自动往指挥机发一次读卡指令，保持程序能持续接收到指挥机不断返回的数据，并把接收到的数据通过外网往我们服务器这边指定端口一直转发。</p>
+<p>后来跟同事讨论了一下这个事，结论是我们作为甲方，需求是给ip和端口接收数据，其它的不需要我们来做。</p>
+<p>于是我跟项目经理讨论了这个事，让她去沟通沟通。</p>
+<p><strong>一些经历</strong></p>
+<p>刚开时经理跟我说北斗设备安装好了，让我过去拿下数据，我说好的。</p>
+<p>问北斗工作人员要数据接口的文档，他们给我发了个数据的传输协议…？刚开始我没搞懂，我要数据你直接给我接口不就完事了，然而并不是。</p>
+<p>他们的指挥机是盒子大小，串口通信，需要往指挥机发送32位指令，才能获取数据。（回忆起被fpga支配的恐惧）</p>
+<p>后来看了一些相关文档，想着我先过去看看数据长什么样，于是下午提着台笔记本就去安装设备的地方。  (后来发现我太天真，还需要带个插座…  现场环境连个给我插笔记本电源线的地方都没有，我两个小时的电量，一心想一天弄完，于是一边吊着心看剩余电量一边配置指挥机，导致我从那离开后，一个小时心都是吊着的)</p>
+<p>起初他们的软件说明文档十分简单，上面写着需要我设置一个虚拟串口，而并没有说明这个是要干什么的，导致我在这一块与指挥机的串口混淆了起来，耽误了我好长时间，导致一天没能做完。</p>
+<p>第二天去他们官网查资料，把这一过程更详细地捋一遍，下午再去一趟现场。</p>
+<img src="\images\日志\北斗设备连接过程.png" style="vertical-align:middle;width:40%">
+
+<p>因为我笔记本通过串口转网口直连的北斗设备，不经过路由器，所以不需要设置虚拟串口。</p>
+<p>经过长时间的不断尝试（瞎折腾）之后，终究是回到了需要往指挥机发送指令才能获取数据的问题上。</p>
+<p>后来跟同事讨论了一下怎么去做程序，得出一个结论： 我们是甲方为什么我们来做…</p>
+<p>跟项目经理讨论了这件事，项目经理说她再去沟通。</p>
+<p><strong>反思</strong></p>
+<p>我这两天究竟在干啥？</p>
+<p>以后做一件事之前要想想是不是我应该做的，不然捣鼓好久，相当于没做，一点成就感没有。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" rel="tag"><i class="fa fa-tag"></i> 串口通信</a>
+              <a href="/tags/tcp/" rel="tag"><i class="fa fa-tag"></i> tcp</a>
+          </div>
 
         
-      </div>
-      
-      
-      
-    </div>
-    
 
-    
-    
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/18/%E5%8A%9F%E8%83%BD-%E5%BA%95%E5%9B%BE%E5%88%87%E6%8D%A2/" rel="prev" title="功能:底图切换">
+                  <i class="fa fa-chevron-left"></i> 功能:底图切换
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
 
 
       

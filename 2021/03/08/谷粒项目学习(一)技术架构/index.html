@@ -31,7 +31,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/images/知识回顾/谷粒/项目技术架构.png">
 <meta property="article:published_time" content="2021-03-08T09:57:15.000Z">
-<meta property="article:modified_time" content="2021-03-09T01:28:19.399Z">
+<meta property="article:modified_time" content="2021-03-09T01:41:51.415Z">
 <meta property="article:author" content="Nkblouser">
 <meta property="article:tag" content="JAVA">
 <meta property="article:tag" content="Spring">
@@ -298,7 +298,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-09 09:28:19" itemprop="dateModified" datetime="2021-03-09T09:28:19+08:00">2021-03-09</time>
+        <time title="修改时间：2021-03-09 09:41:51" itemprop="dateModified" datetime="2021-03-09T09:41:51+08:00">2021-03-09</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -361,28 +361,19 @@
 <h5 id="存储层"><a href="#存储层" class="headerlink" title="存储层"></a>存储层</h5><p>​    MYSQL、Redis（数据缓存）、Logback（日志）</p>
 <h4 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h4><p>Linux、Docker（容器）、Maven（包引入、版本控制）、Git（分布式管理工具）、Jenkins（开源的、提供友好操作界面的持续集成工具，主要用于持续、自动的构建/测试软件项目、监控外部任务的运行）</p>
 <h3 id="工程结构"><a href="#工程结构" class="headerlink" title="工程结构"></a>工程结构</h3><ul>
-<li><p><strong>guli_parent：根目录（父工程），管理四个子模块：</strong></p>
-</li>
-<li><ul>
-<li><p><strong>canal_client**</strong>：canal数据库表同步模块（统计同步数据）**</p>
-</li>
-<li><p><strong>common**</strong>：公共模块父节点**</p>
-</li>
-<li><ul>
+<li><strong>guli_parent：根目录（父工程），管理四个子模块：</strong><ul>
+<li><strong>canal_client</strong>：canal数据库表同步模块（统计同步数据）</li>
+<li><strong>common</strong>：公共模块父节点<ul>
 <li>common_util：工具类模块，所有模块都可以依赖于它</li>
-<li>service_base：service服务的base包，包含service服务的公共配置类，所有service模块依赖于它</li>
 <li>spring_security：认证与授权模块，需要认证授权的service服务依赖于它</li>
+<li>service_base：service服务的base包，包含service服务的公共配置类，所有service模块依赖于它</li>
 </ul>
 </li>
-<li><p><strong>infrastructure**</strong>：基础服务模块父节点**</p>
-</li>
-<li><ul>
+<li><strong>infrastructure</strong>：基础服务模块父节点<ul>
 <li>api_gateway：api网关服务</li>
 </ul>
 </li>
-<li><p><strong>service**</strong>：api接口服务父节点**</p>
-</li>
-<li><ul>
+<li><strong>service</strong>：api接口服务父节点<ul>
 <li>service_edu：教学相关api接口服务</li>
 <li>service_oss：阿里云oss api接口服务</li>
 <li>service_acl：用户权限管理api接口服务（用户管理、角色管理和权限管理等）</li>
